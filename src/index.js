@@ -9,25 +9,15 @@
 //   </React.StrictMode>
 // );
 
+import { legacy_createStore } from "@reduxjs/toolkit"; 
+
 const plus = document.getElementById("plus_btn");
 const minus = document.getElementById("minus_btn");
 const number = document.querySelector("span");
 
-let count = 0;
-
-number.innerText = count;
-
-const undateText = () => {
-  number.innerText = count;
+const counterReducer = (state= 0) => {
+  return state;
 }
 
-const handlePlus = () => {
-  count = count + 1;
-  undateText();
-}
-const handleMinus = () => {
-  count = count-1;
-  undateText();
-}
-plus.addEventListener("click", handlePlus);
-minus.addEventListener("click", handleMinus);
+const countStore = legacy_createStore(counterReducer);
+  console.log(countStore.getState());

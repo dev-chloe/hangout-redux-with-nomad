@@ -28,3 +28,10 @@ npx create-react-app hangout-redux-with-nomad
 ```
 
 ### Set dependencies
+
+1. [**redux**](https://redux.js.org/)
+
+    ```bash
+    # Install Redux Toolkit and React-Redux
+    npm install @reduxjs/toolkit react-redux
+    ```

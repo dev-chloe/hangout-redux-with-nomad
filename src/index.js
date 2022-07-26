@@ -15,9 +15,24 @@ const plus = document.getElementById("plus_btn");
 const minus = document.getElementById("minus_btn");
 const number = document.querySelector("span");
 
-const counterReducer = (state= 0) => {
-  return state;
+const counterReducer = (count = 0, action) => {
+  console.log(count, action)
+  if (action.type === "PLUS") {
+    return count + 1;
+  } else if (action.type === "MINUS") {
+    return count - 1;
+  } else {
+    return count;
+  }
 }
 
 const countStore = legacy_createStore(counterReducer);
-  console.log(countStore.getState());
+
+countStore.dispatch({ type: "PLUS" });
+countStore.dispatch({ type: "PLUS" });
+countStore.dispatch({ type: "PLUS" });
+countStore.dispatch({ type: "PLUS" });
+countStore.dispatch({ type: "PLUS" });
+countStore.dispatch({ type: "MINUS" });
+
+console.log(countStore.getState());

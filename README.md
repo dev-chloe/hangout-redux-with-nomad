@@ -68,7 +68,7 @@ npx create-react-app hangout-redux-with-nomad
 
     ```bash
     # react router
-    npm install react-router-dom
+    npm install react-router-dom react-redux
     ```
 
     ```javascript

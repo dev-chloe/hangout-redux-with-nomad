@@ -35,3 +35,13 @@ npx create-react-app hangout-redux-with-nomad
     # Install Redux Toolkit and React-Redux
     npm install @reduxjs/toolkit react-redux
     ```
+
+    > state를 mutate(변형)하지 말아야된다.
+    > mutate 하는 것이 아니라 새로운 objcts(새로운 상태)를 리턴해야 된다.
+
+    ```javascript
+        // mutation 예시
+        const friends = ["dal"];
+
+        friends.push("lynn");
+    ```

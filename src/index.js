@@ -9,42 +9,35 @@
 //   </React.StrictMode>
 // );
 
-import { legacy_createStore } from "@reduxjs/toolkit"; 
+import { legacy_createStore } from "@reduxjs/toolkit";
 
-const plus = document.getElementById("plus_btn");
-const minus = document.getElementById("minus_btn");
-const number = document.querySelector("span");
+const form = document.querySelector("form");
+const input = document.querySelector("input");
+const ul = document.querySelector("ul");
 
-const PLUS = "PLUS";
-const MINUS = "MINUS";
+const ADD_TODO = "ADD_TODO";
+const DELETE_TODO = "DELETE_TODO";
 
-number.innerText = 0;
-
-const counterReducer = (count = 0, action) => {
+const reducer = (state = [], action) => {
+  console.log(action)
   switch (action.type) {
-    case PLUS:
-      return count + 1;
-    case MINUS:
-      return count - 1;
-    default: 
-      return count
+    case ADD_TODO:
+      return [];
+    case DELETE_TODO:
+      return [];
+    default:
+      return state;
   }
-}
+};
 
-const countStore = legacy_createStore(counterReducer);
+const store = legacy_createStore(reducer);
 
-const onChange = () => {
-  number.innerText = countStore.getState();
-}
 
-countStore.subscribe(onChange);
+const onSubmit = e => {
+  e.preventDefault();
+  const toDo = input.value;
+  input.value = "";
+  store.dispatch({ type: ADD_TODO, text: toDo });
+};
 
-const handlePlus = () => {
-  countStore.dispatch({ type: PLUS })
-}
-const handleMinus = () => {
-  countStore.dispatch({ type: MINUS })
-}
-
-plus.addEventListener("click", handlePlus);
-minus.addEventListener("click", handleMinus);
+form.addEventListener("submit", onSubmit);

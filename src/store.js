@@ -15,8 +15,6 @@ const store = configureStore({
   reducer: toDos.reducer
 });
 
-console.log(toDos.actions);
-
 export const {
   add,
   remove

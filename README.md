@@ -62,6 +62,38 @@ npx create-react-app hangout-redux-with-nomad
         };
     ```
 
+    > redux-toolkit은 Immer를 통해 mutate를 사용할 수 있게 해준다.
+
+    ```javascript
+        // redux-toolkit을 사용해 push(mutating)하는 것
+        const reducer = createReducer([], {
+            [addTodo]: (state, action) => {
+                state.push({ text: action.payload, id: Date.now() }); 
+            }, // 리턴 안 할 때 mutate를 하기 때문에 새로운 state를 반환하지 않는다.
+            [deleteTodo]: (state, action) => state.filter(toDo => toDo.id !== action.payload) // return 할 때 새로운 state를 반환하는 것이다.
+        });
+    ```
+
+    > createAction
+    > action으로 부터 무엇인가를 받으려면 payload를 사용한다.
+
+    ```javascript
+        const addTodo = createAction("ADD");
+
+        const deleteTodo = createAction("DELETE");
+
+        const reducer = (state = [], action) => {
+            switch (action.type) {
+                case addTodo.type:
+                    return [{text: action.payload, id: Date.now()}, ...state];
+                case deleteTodo.type:
+                    return state.filter(toDo => toDo.id !== action.payload);
+                default:
+                    return state;
+            }
+        };
+    ```
+
     [예제 코드 블럭](https://github.com/dev-chloe/hangout-redux-with-nomad/blob/af82a84fcf8eb1fdade26bbec6edc4c63e9d24f2/src/index.js#L18-L77)
 
 2. [**ReactRouter**](https://reactrouter.com/)
